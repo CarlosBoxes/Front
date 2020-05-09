@@ -1,0 +1,329 @@
+<div class="layout">
+
+  <!-- Navigation -->
+  <div class="navigation navbar navbar-light justify-content-center py-xl-7">
+
+    <!-- Brand -->
+    <a class="d-none d-xl-block mb-6">
+      <img src="assets/images/brand.svg" class="mx-auto fill-primary" data-inject-svg="" alt="" style="height: 46px;">
+    </a>
+
+    <!-- Menu -->
+    <ul
+      class="nav navbar-nav flex-row flex-xl-column flex-grow-1 justify-content-between justify-content-xl-center py-3 py-lg-0"
+      role="tablist">
+
+      <!-- Chats -->
+      <li class="nav-item mt-xl-9">
+        <a class="nav-link position-relative p-0 py-xl-3 active" [routerLink]= "['/messenger']" data-toggle="tab" title="Chats" role="tab">
+          <i class="icon-lg fe-message-square"></i>
+          <div class="badge badge-dot badge-primary badge-bottom-center"></div>
+        </a>
+      </li>
+
+
+    </ul>
+    <!-- Menu -->
+
+  </div>
+  <!-- Navigation -->
+
+
+
+  <!-- Main Content -->
+  <div class="main main-visible" data-mobile-height="">
+
+
+    <!-- Chat -->
+    <div class="chat">
+
+      <!-- Chat: body -->
+      <div class="chat-body">
+
+        
+
+        <!-- Chat: Content-->
+        <div class="chat-content px-lg-8" style="background: #ebebeb !important;">
+          <form>
+            <div class="container-xxl py-6 py-lg-10">
+
+             
+              <!-- Accordion -->
+              <div class="accordion modified-accordion mb-n6 mb-lg-8" id="profile-settings">
+                <div class="card-columns">
+
+
+
+                  <!-- Card -->
+                  <div class="card mb-6 mb-lg-8">
+                    <div class="card-header position-relative color-create-publication">
+                      <a class="text-reset d-block stretched-link collapsed" data-target="#profile-settings-account"
+                        aria-controls="profile-settings-account" aria-expanded="true">
+                        <div class="row no-gutters align-items-center">
+                          <!-- Title -->
+                          <div class="col">
+                            <h5>{{datos_user.nombre}}</h5>
+                          </div>
+                          <div class="col">
+                            <h6>{{count_seguidores}}</h6>
+                            <span>Seguidores</span>
+                          </div>
+                          <div class="col">
+                            <h6>{{count_follow}}</h6>
+                            <span>Seguidos</span>
+                          </div>
+                          <!-- Icon -->
+                          <div class="col-auto">
+                            <div class="avatar avatar-online mr-5">
+                              <img class="avatar-img" [src]="url + 'usuario/img/'+ datos_user.imagen"
+                                alt="Anna Bridges">
+                            </div>
+                          </div>
+                          
+
+                        </div>
+                      </a>
+                      <!-- Card -->
+                    
+                      
+                      <!-- Card -->
+
+                    </div>
+
+                    <div id="profile-settings-account" class="collapse show" data-parent="#profile-settings">
+                      <div class="card-body color-create-publication">
+
+                        <div class="form-group margin1px">
+                          
+                          <textarea class="form-control form-control-lg text-area" id="profile-about" rows="1"
+                            placeholder="¿Que estas pensando?" data-autosize="true" name="texto" [(ngModel)]= "texto"></textarea>
+                        </div>
+
+                           <div class="card-header position-relative color-create-publication">
+                            
+                               <div class="row no-gutters align-items-center">
+                                 <!-- Title -->
+                                 <div class="col">                 
+                                     <button class="btn btn-md btn-link nounderline" type="submit"
+                                       (click)=" GuardarPublicacion()">Publicar</button>
+                                 </div>
+                                 <div class="col-auto">
+                                   <div class=" form-group margin1px">
+                                     <div class=" text-center ">
+                                       <div class="avatar bg-secondary text-white mb-5">
+                                         <i class="icon-sm fe-image"></i>
+                                       </div>
+                                       <input id="upload-user-photo" class="d-none" type="file">
+                                       <label class="stretched-label mb-0" for="upload-user-photo"></label>
+                                     </div>
+
+                                   </div>
+                                 </div>
+                               </div>
+                             
+
+                           </div>
+                        
+                      </div>
+                    </div><!-- .collapse -->
+
+                  </div>
+                  <!-- Card -->
+
+                  <!-- Card -->
+                  <div class="card mb-6 mb-lg-8">
+                    <div class="card-header position-relative">
+                      <a class="text-reset d-block stretched-link collapsed"
+                        data-target="#profile-settings-notifications" aria-controls="profile-settings-notifications"
+                        aria-expanded="true">
+                        <div class="row no-gutters align-items-center">
+                          <!-- Title -->
+                          <div class="col">
+                            <h5>Publicaciones</h5>
+                            
+                          </div>
+
+                          <!-- Icon -->
+                          <div class="col-auto">
+                            <i class="text-muted icon-md fe-bell"></i>
+                          </div>
+                        </div>
+                      </a>
+                    </div>
+
+                    <ng-container *ngFor="let item of datos_publicaciones">
+                       <div id="profile-settings-notifications" class="collapse show" data-parent="#profile-settings">
+                         <div class="card-body card-padingpub">
+                           <ul class="list-group list-group-flush">
+
+                             <li class="list-group-item px-0">
+                               <div class="d-flex justify-content-start mb-2">
+                                 <!-- Title -->
+                                 <div class="avatar img-pub">
+                                   <img class="avatar-img img-pub" [src]="url + 'usuario/img/'+ item.user.imagen"
+                                     alt="Anna Bridges">
+                                 </div>
+                                 <div class="col-auto">
+                                   <h6 class="mb-0">{{item.user.nombre}}</h6>
+                                   <span>{{item.createAt}}</span>
+                                 </div>
+
+                               </div>
+
+                               <div class="d-flex justify-content-start mb-2">
+                                 <!-- Title -->
+                                 <p>{{item.texto}}</p>
+
+                               </div>
+
+
+                             </li>
+
+                           </ul>
+                         </div>
+                       </div>
+
+                    </ng-container>
+                     
+                  </div>
+                  <!-- Card -->
+
+                  <!-- Card -->
+                  <div class="card mb-6 mb-lg-8">
+                    <div class="card-header position-relative color-ultimas-pub">
+                      <a class="text-reset d-block stretched-link collapsed" data-target="#profile-settings-security"
+                        aria-expanded="true" aria-controls="profile-settings-security">
+                        <div class="row no-gutters align-items-center">
+                          <!-- Title -->
+                          <div class="col">
+                            <h5>Mis ultimas publicaciones</h5>
+                            
+                          </div>
+
+                          <!-- Icon -->
+                          <div class="col-auto">
+                            <i class="text-muted icon-md fe-shield"></i>
+                          </div>
+                        </div>
+                      </a>
+                    </div>
+
+                      <ng-container *ngFor="let item of datos_mis_tweets">
+                        <div id="profile-settings-notifications" class="collapse show" data-parent="#profile-settings">
+                          <div class="card-body card-padingpub color-ultimas-pub">
+                            <ul class="list-group list-group-flush">
+
+                              <li class="list-group-item px-0">
+                                <div class="d-flex justify-content-start mb-2">
+                                  <!-- Title -->
+                                  <div class="avatar img-pub">
+                                    <img class="avatar-img img-pub" [src]="url + 'usuario/img/'+ item.user.imagen"
+                                      alt="Anna Bridges">
+                                  </div>
+                                  <div class="col-auto">
+                                    <h6 class="mb-0">{{item.user.nombre}}</h6>
+                                  </div>
+
+                                </div>
+
+                                <div class="d-flex justify-content-start mb-2">
+                                  <!-- Title -->
+                                  <p>{{item.texto}}</p>
+
+                                </div>
+
+
+                              </li>
+
+                            </ul>
+                          </div>
+                        </div>
+
+                      </ng-container>
+                  
+
+                  </div>
+                  <!-- Card -->
+
+                  <!-- Card -->
+                  <div class="card mb-6 mb-lg-8">
+                    <div class="card-header position-relative color-mis-seguidores">
+                      <a class="text-reset d-block stretched-link collapsed" data-target="#profile-settings-social"
+                        aria-controls="profile-settings-social" aria-expanded="true">
+                        <div class="row no-gutters align-items-center">
+                          <!-- Title -->
+                          <div class="col">
+                            <h5>Ultimos seguidores</h5>
+                            
+                          </div>
+
+                          <!-- Icon -->
+                          <div class="col-auto">
+                            <i class="text-muted icon-md fe-share-2"></i>
+                          </div>
+                        </div>
+                      </a>
+                    </div>
+
+                     <div id="profile-settings-notifications" class="collapse show" data-parent="#profile-settings">
+                       <div class="card-body card-padingpub color-mis-seguidores">
+                         <ul class="list-group list-group-flush">
+
+                           <li class="list-group-item px-0">
+                             <div class="d-flex justify-content-start mb-2">
+                               <!-- Title -->
+                               <ng-container *ngFor="let item of datos_mis_seguidores">
+                                  <div class=" col-2 col-2-seguidores">
+                                    <div class="col-auto text-center">
+                                      <div class="avatar">
+                                        <img class="avatar-img" [src]="url + 'usuario/img/'+ item.imagen"
+                                          alt="">
+
+                                      </div>
+                                    </div>
+
+                                    <div class="text-center">
+                                      <span>{{item.nombre}} </span>
+                                    </div>
+
+                                  </div>
+                               </ng-container>
+                               
+
+                               
+                              
+                               
+
+                             </div>
+
+                           </li>
+
+                         </ul>
+                       </div>
+                     </div>
+                
+
+                  </div>
+                  <!-- Card -->
+
+                </div>
+              </div>
+              <!-- Accordion -->
+
+            </div>
+          </form>
+        </div>
+        <!-- Chat: Content -->
+
+      </div>
+      <!-- Chat: body -->
+
+    </div>
+    <!-- Chat -->
+
+
+  </div>
+  <!-- Main Content -->
+
+</div>
+<!-- Layout -->

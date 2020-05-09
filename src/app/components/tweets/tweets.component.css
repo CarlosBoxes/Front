@@ -1,0 +1,60 @@
+.nounderline {
+  text-decoration: none !important;
+}
+
+.margin1px{
+  margin-bottom: 1px;
+}
+
+div.card-header:nth-child(2) {
+  padding-bottom: 0px;
+  padding-left: 0px;
+  padding-top: 10px;
+  padding-right: 0px;
+}
+div:nth-child(1) {
+  padding-bottom: 0px;
+}
+
+/* template.dark.min.css | http://localhost:4200/assets/css/template.dark.min.css */
+
+.img-pub {
+ 
+  height: 2.125rem;
+  min-height: 2.125rem;
+  width: 2.125rem;
+  min-width: 2.125rem;
+}
+
+.card-padingpub {
+  padding-top: 0px;
+}
+
+.col-2-seguidores {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+
+.color-create-publication {
+  
+  background-color: #3a333b;
+  border-bottom: 1px solid #3a333b;
+}
+
+
+.text-area {
+  background-color: #4c4f52;
+} 
+
+.color-ultimas-pub {
+  background-color: #4b4e61;
+  border-bottom: 1px solid #4b4e61;
+}
+
+.color-mis-seguidores {
+  background-color: #332c39
+;
+  border-bottom: 1px solid #332c39
+;
+}
