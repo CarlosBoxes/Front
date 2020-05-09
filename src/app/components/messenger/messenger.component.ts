@@ -35,7 +35,6 @@ export class MessengerComponent implements OnInit {
   ngOnInit(): void {
     if (this.identity){
     this.data_msm = new Message('','','','')
-
     this._userService.get_users().subscribe(
       response => {
         this.usuarios = response.users

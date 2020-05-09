@@ -41,6 +41,7 @@ export class LoginComponent implements OnInit {
         response => {
           this.token = response.jwt
           this.identity = JSON.stringify(response.user)
+          console.log(this.identity)
           localStorage.setItem('token', this.token)
           this._userService.login(this.user,true).subscribe(
             response => {

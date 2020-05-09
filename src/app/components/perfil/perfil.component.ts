@@ -49,7 +49,6 @@ export class PerfilComponent implements OnInit {
       this._userService.get_user(this.de).subscribe (
         response => {
           this.datos_user = response.user
-          
           this.data = {
             nombre: this.datos_user.nombre,
             email: this.datos_user.email,
