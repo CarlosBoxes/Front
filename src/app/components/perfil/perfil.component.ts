@@ -26,7 +26,9 @@ export class PerfilComponent implements OnInit {
   public msm_error
   public usuarios
   public data_send : any = {}
-  public msm_success 
+  public msm_success
+  public passwordText
+  public confirm_passwordText
 
   public file : File
   public imgselected : String | ArrayBuffer

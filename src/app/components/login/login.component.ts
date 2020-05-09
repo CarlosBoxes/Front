@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
     this.user = new User('','','','','','','','','',false)
     if(this.data_user){
       console.log(this.data_user)
-      this._router.navigate(['messenger'])
+      this._router.navigate(['tweets'])
     }
   }
 
@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit {
           this._userService.login(this.user,true).subscribe(
             response => {
               localStorage.setItem('identity', this.identity)
-              this._router.navigate(['messenger'])
+              this._router.navigate(['tweets'])
             },
             error => {
 

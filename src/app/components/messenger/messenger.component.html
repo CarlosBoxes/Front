@@ -17,7 +17,7 @@
 
                     <!-- Create group -->
                     <li class="nav-item">
-                        <a class="nav-link position-relative p-0 py-xl-3" data-toggle="tab" href="#tab-content-create-chat" title="Create chat" role="tab">
+                        <a class="nav-link position-relative p-0 py-xl-3" data-toggle="tab" [routerLink]="['/tweets']" title="Create chat" role="tab">
                             <i class="icon-lg fe-edit"></i>
                         </a>
                     </li>
@@ -31,9 +31,9 @@
 
                     <!-- Chats -->
                     <li class="nav-item mt-xl-9">
-                        <a class="nav-link position-relative p-0 py-xl-3 active" data-toggle="tab" href="#tab-content-dialogs" title="Chats" role="tab">
+                        <a class="nav-link position-relative p-0 py-xl-3" data-toggle="tab" [routerLink]="['/messenger']" title="Chats" role="tab">
                             <i class="icon-lg fe-message-square"></i>
-                            <div class="badge badge-dot badge-primary badge-bottom-center"></div>
+                           
                         </a>
                     </li>
 
@@ -46,9 +46,7 @@
 
                     <!-- Demo only: Documentation -->
                     <li class="nav-item mt-xl-9 d-none d-xl-block flex-xl-grow-1">
-                        <a class="nav-link position-relative p-0 py-xl-3" data-toggle="tab" href="#tab-content-demos" title="Demos" role="tab">
-                            <i class="icon-lg fe-layers"></i>
-                        </a>
+                       
                     </li>
 
                     <!-- Settings -->
@@ -56,6 +54,11 @@
                         <a class="nav-link position-relative p-0 py-xl-3" [routerLink]="['/perfil']" title="Settings">
                             <i class="icon-lg fe-settings"></i>
                         </a>
+                    </li>
+                    <li class="nav-item mt-xl-9">
+                      <a class="nav-link position-relative p-0 py-xl-3" [routerLink]="['/logout']" title="Logout">
+                        <i class="icon-lg fe-log-out"></i>
+                      </a>
                     </li>
 
                 </ul>
@@ -1205,9 +1208,20 @@
                                     </div>
 
                                     <!-- Chat photo -->
-                                    <div class="col-6 col-xl-6">
+                                    <div class="col-6 col-xl-6" >
                                         <div class="media text-center text-xl-left">
+                                            <div *ngIf="mostrarimagen"
+                                              class="avatar avatar-sm avatar-online d-none d-lg-inline-block mr-5">
+                                              <img [src]="url + 'usuario/img/'+imagen" class="avatar-img"
+                                                alt="{{nombre}}">
+                                            </div>
 
+                                            <div class="media-body align-self-center text-truncate">
+                                              <h6 class="text-truncate mb-n1">{{nombre}}</h6>
+                                              <span
+                                                class="badge badge-dot badge-success d-inline-block d-xl-none mr-1"></span>
+                                              
+                                            </div>
                                         </div>
                                     </div>
 

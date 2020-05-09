@@ -5,6 +5,7 @@ import { identity } from 'rxjs';
 import { Message } from "../../models/Message";
 import * as io from "socket.io-client";
 import { Router } from '@angular/router';
+import  push from "push.js";
 
 @Component({
   selector: 'app-messenger',
@@ -21,7 +22,9 @@ export class MessengerComponent implements OnInit {
   public data_msm
   public send_message
   public socket = io('http://localhost:4201')
-
+  public nombre
+  public imagen 
+  public mostrarimagen
   constructor(
     private _userService: UserService,
     private _router: Router
@@ -33,6 +36,9 @@ export class MessengerComponent implements OnInit {
    }
 
   ngOnInit(): void {
+
+
+   this.mostrarimagen = false; 
     if (this.identity){
     this.data_msm = new Message('','','','')
     this._userService.get_users().subscribe(
@@ -62,10 +68,17 @@ export class MessengerComponent implements OnInit {
   listar(id){
     this._userService.get_user(id).subscribe(
       response =>{
+        this.nombre = null;
+        this.imagen = null;
+
         this.user_select = response.user
+        this.nombre = this.user_select.nombre; 
+        this.imagen = this.user_select.imagen;
+        this.mostrarimagen = true; 
         this._userService.get_messages(this.de,id).subscribe(
           response=>{
             this.mensajes = response.messages
+
           },
           error => {
             
@@ -78,6 +91,8 @@ export class MessengerComponent implements OnInit {
       }
     )
   }
+
+
 
   onSubmit(msmForm){
     if(msmForm.valid){

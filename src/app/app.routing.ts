@@ -5,6 +5,7 @@ import { LoginComponent } from './components/login/login.component';
 import { MessengerComponent } from './components/messenger/messenger.component';
 import { PerfilComponent } from './components/perfil/perfil.component';
 import { TweetsComponent } from './components/tweets/tweets.component';
+import { LogoutComponent } from './components/logout/logout.component';
 
 
 const appRouter: Routes = [
@@ -13,6 +14,7 @@ const appRouter: Routes = [
     {path: 'messenger', component: MessengerComponent},
     {path: 'perfil', component: PerfilComponent}, 
     {path: 'tweets', component: TweetsComponent }, 
+    {path: 'logout', component: LogoutComponent}, 
 ]
 
 export const appRoutingProviders : any[] = [];
