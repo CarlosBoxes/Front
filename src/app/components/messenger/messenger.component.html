@@ -268,6 +268,7 @@
                                                             </div>
                                                             
 
+
                                                             <div class="media-body align-self-center mr-6">
                                                                 <h6 class="mb-0">Matthew Wiggins</h6>
                                                                 <small class="text-muted">last seen 3 days ago</small>
@@ -454,6 +455,8 @@
 
                                     <!-- Title -->
                                     <h2 class="font-bold mb-6">Friends</h2>
+
+                                    
                                     <!-- Title -->
 
                                     <!-- Search -->
@@ -849,33 +852,32 @@
 
                                     <!-- Chats -->
                                     <nav class="nav d-block list-discussions-js mb-n6">
-                                        <ng-container *ngFor="let item of usuarios">
-                                    <!-- Chat link -->
-                                        <a class="text-reset nav-link p-0 mb-6" *ngIf="item._id != de "(click)="listar(item._id)">
-                                            <div class="card card-active-listener">
-                                                <div class="card-body">
-
-                                                    <div class="media">
-                                                        
-                                                        <div class="avatar avatar-online mr-5">
-                                                            <img class="avatar-img" [src]="url + 'usuario/img/'+ item.imagen" alt="Anna Bridges">
-                                                        </div>
-                                                        
-                                                        
-                                                        <div class="media-body overflow-hidden">
-                                                            <div class="d-flex align-items-center mb-1">
-                                                                <h6 class="text-truncate mb-0 mr-auto">{{item.nombre}}</h6>
-                                                            </div>
+                                        <!-- Chat link -->
+                                        <ng-container  *ngFor="let item of usuarios">
+                                            <ng-container *ngIf="item._id != de">
+                                                <a class="text-reset nav-link p-0 mb-6" (click)="listar(item._id)">
+                                                    <div class="card card-active-listener">
+                                                        <div class="card-body">
+                                                            <div class="media">   
+                                                                <div class="avatar avatar-online mr-5" >
+                                                                    <img class="avatar-img" [src]="url + 'usuario/img/'+ item.imagen">
+                                                                </div>
+                                                                <div class="media-body overflow-hidden" style="margin-top: 10px;">
+                                                                    <div class="d-flex align-items-center mb-1">
+                                                                        <h6 class="text-truncate mb-0 mr-auto">{{item.nombre}}</h6>
+                                                                        
+                                                                    </div>
+                                                                </div>
+                                                            </div>  
                                                         </div>
                                                     </div>
-
-                                                </div>
-
-                                                
-                                            </div>
-                                        </a>
-                                        <!-- Chat link -->
-                                    </ng-container>
+                                                </a>
+        
+                                              
+                                              
+                                            </ng-container>
+                                            
+                                        </ng-container>
                                     </nav>
                                     <!-- Chats -->
                                 </div>
@@ -1180,7 +1182,7 @@
 
             <!-- Main Content -->
             <div class="main main-visible" data-mobile-height="">
-
+                <ng-container *ngIf="user_select">
                 <!-- Chat -->
                 <div id="chat-2" class="chat dropzone-form-js" data-dz-url="some.php">
 
@@ -1206,9 +1208,18 @@
 
                                     <!-- Chat photo -->
                                     <div class="col-6 col-xl-6">
-                                        <div class="media text-center text-xl-left">
-
+                                    <!--aca va la imagen del chat en que esta-->
+                                    <div class="media text-center text-xl-left">
+                                        <div class="avatar avatar-sm d-none d-lg-inline-block mr-5">
+                                            <img [src]="url + 'usuario/img/'+ user_select.imagen" class="avatar-img" alt="">
                                         </div>
+
+                                        <div class="media-body align-self-center text-truncate">
+                                            <h6 class="text-truncate mb-n1">{{user_select.nombre}}</h6>
+                                        
+                                        
+                                        </div>
+                                    </div>
                                     </div>
 
                                     <!-- Chat toolbar -->
@@ -1782,11 +1793,12 @@
                         </div>
                     </div>
                     <!-- Chat Details -->
-
+                    
                 </div>
+                </ng-container>
                 <!-- Chat -->
-
             </div>
+            
             <!-- Main Content -->
 
         </div>
