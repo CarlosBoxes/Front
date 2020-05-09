@@ -12,6 +12,7 @@ import { LoginComponent } from './components/login/login.component';
 import { PerfilComponent } from './components/perfil/perfil.component';
 import { TweetsComponent } from './components/tweets/tweets.component';
 import { LogoutComponent } from './components/logout/logout.component';
+import { UsuariosComponent } from './components/usuarios/usuarios.component';
 
 
 
@@ -24,6 +25,7 @@ import { LogoutComponent } from './components/logout/logout.component';
     PerfilComponent,
     TweetsComponent,
     LogoutComponent,
+    UsuariosComponent,
     //LoginsComponent
   ],
   imports: [

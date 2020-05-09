@@ -15,13 +15,6 @@
                         </a>
                     </li>
 
-                    <!-- Create group -->
-                    <li class="nav-item">
-                        <a class="nav-link position-relative p-0 py-xl-3" data-toggle="tab" [routerLink]="['/tweets']" title="Create chat" role="tab">
-                            <i class="icon-lg fe-edit"></i>
-                        </a>
-                    </li>
-
                     <!-- Friend -->
                     <li class="nav-item mt-xl-9">
                         <a class="nav-link position-relative p-0 py-xl-3" data-toggle="tab" [routerLink]="['/usuarios']" title="Friends" role="tab">
@@ -31,34 +24,17 @@
 
                     <!-- Chats -->
                     <li class="nav-item mt-xl-9">
-                        <a class="nav-link position-relative p-0 py-xl-3" data-toggle="tab" [routerLink]="['/messenger']" title="Chats" role="tab">
+                        <a class="nav-link position-relative p-0 py-xl-3 active" data-toggle="tab" [routerLink]="['/messenger']" title="Chats" role="tab">
                             <i class="icon-lg fe-message-square"></i>
-                           
-                        </a>
-                    </li>
-
-                    <!-- Profile -->
-                    <li class="nav-item mt-xl-9">
-                        <a class="nav-link position-relative p-0 py-xl-3" data-toggle="tab" href="#tab-content-user" title="User" role="tab">
-                            <i class="icon-lg fe-user"></i>
+                            <div class="badge badge-dot badge-primary badge-bottom-center"></div>
                         </a>
                     </li>
 
                     <!-- Demo only: Documentation -->
                     <li class="nav-item mt-xl-9 d-none d-xl-block flex-xl-grow-1">
-                       
-                    </li>
-
-                    <!-- Settings -->
-                    <li class="nav-item mt-xl-9">
-                        <a class="nav-link position-relative p-0 py-xl-3" [routerLink]="['/perfil']" title="Settings">
-                            <i class="icon-lg fe-settings"></i>
+                        <a class="nav-link position-relative p-0 py-xl-3" data-toggle="tab" href="#tab-content-demos" title="Demos" role="tab">
+                            <i class="icon-lg fe-layers"></i>
                         </a>
-                    </li>
-                    <li class="nav-item mt-xl-9">
-                      <a class="nav-link position-relative p-0 py-xl-3" [routerLink]="['/logout']" title="Logout">
-                        <i class="icon-lg fe-log-out"></i>
-                      </a>
                     </li>
 
                 </ul>
@@ -836,7 +812,7 @@
                                 <div class="container-fluid py-6">
 
                                     <!-- Title -->
-                                    <h2 class="font-bold mb-6">Chats</h2>
+                                    <h2 class="font-bold mb-6">Tuiteros</h2>
                                     <!-- Title -->
 
                                     <!-- Search -->
@@ -867,10 +843,17 @@
                                                                 </div>
                                                                 <div class="media-body overflow-hidden" style="margin-top: 10px;">
                                                                     <div class="d-flex align-items-center mb-1">
-                                                                        <h6 class="text-truncate mb-0 mr-auto">{{item.nombre}}</h6>
-                                                                        
+                                                                        <h5 class="text-truncate mb-0 mr-auto">{{item.nombre}}</h5>
+                                                                    </div>
+                                                                    <div class="d-flex align-items-center mb-1">
+                                                                        <h6 class="text-truncate mb-0 mr-auto">{{item.bio}}</h6>
                                                                     </div>
                                                                 </div>
+                                                                <!--ACA VA EL BOTON DE SEGUIR-->
+                                                                    <form #configForm="ngForm" (ngSubmit)="onSubmit(configForm)" >
+                                                                        <button class="btn btn-lg btn-primary mb-4" type="submit">SEGUIR</button>
+                                                                    </form>
+                                                                
                                                             </div>  
                                                         </div>
                                                     </div>
@@ -917,7 +900,7 @@
 
                                             <div class="media align-items-center">
                                                 <div class="mr-5">
-                                                    <img src="assets/images/brand.svg" class="fill-primary" data-inject-svg="" alt="" style="height: 46px; width: 46px;">
+                                                    <img  class="fill-primary" data-inject-svg="" alt="" style="height: 46px; width: 46px;">
                                                 </div>
                                                 <div class="media-body">
                                                     <h5 class="mb-0">
@@ -1186,632 +1169,199 @@
             <!-- Main Content -->
             <div class="main main-visible" data-mobile-height="">
                 <ng-container *ngIf="user_select">
-                <!-- Chat -->
-                <div id="chat-2" class="chat dropzone-form-js" data-dz-url="some.php">
+                    <div class="main main-visible" data-mobile-height="">
 
-                    <!-- Chat: body -->
-                    <div class="chat-body">
-
-                        <!-- Chat: Header -->
-                        <div class="chat-header border-bottom py-4 py-lg-6 px-lg-8">
-                            <div class="container-xxl">
-
-                                <div class="row align-items-center">
-
-                                    <!-- Close chat(mobile) -->
-                                    <div class="col-3 d-xl-none">
-                                        <ul class="list-inline mb-0">
-                                            <li class="list-inline-item">
-                                                <a class="text-muted px-0" href="#" data-chat="open">
-                                                    <i class="icon-md fe-chevron-left"></i>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-
-                                    <!-- Chat photo -->
-                                    <div class="col-6 col-xl-6" >
-                                        <div class="media text-center text-xl-left">
-                                            <div *ngIf="mostrarimagen"
-                                              class="avatar avatar-sm avatar-online d-none d-lg-inline-block mr-5">
-                                              <img [src]="url + 'usuario/img/'+imagen" class="avatar-img"
-                                                alt="{{nombre}}">
-                                            </div>
-
-                                            <div class="media-body align-self-center text-truncate">
-                                              <h6 class="text-truncate mb-n1">{{nombre}}</h6>
-                                              <span
-                                                class="badge badge-dot badge-success d-inline-block d-xl-none mr-1"></span>
-                                              
-                                            </div>
-                                    <div class="col-6 col-xl-6">
-                                    <!--aca va la imagen del chat en que esta-->
-                                    <div class="media text-center text-xl-left">
-                                        <div class="avatar avatar-sm d-none d-lg-inline-block mr-5">
-                                            <img [src]="url + 'usuario/img/'+ user_select.imagen" class="avatar-img" alt="">
-                                        </div>
-
-                                        <div class="media-body align-self-center text-truncate">
-                                            <h6 class="text-truncate mb-n1">{{user_select.nombre}}</h6>
-                                        
-                                        
-                                        </div>
-                                    </div>
-                                    </div>
-
-                                    <!-- Chat toolbar -->
-                                    <div class="col-3 col-xl-6 text-right">
-                                        <ul class="nav justify-content-end">
-                                            <li class="nav-item list-inline-item d-none d-xl-block mr-3">
-                                                <a class="nav-link text-muted px-3" data-toggle="collapse" data-target="#chat-2-search" href="#" title="Search this chat">
-                                                    <i class="icon-md fe-search"></i>
-                                                </a>
-                                            </li>
-
-                                            <li class="nav-item list-inline-item d-none d-xl-block mr-0">
-                                                <a class="nav-link text-muted px-3" href="#" data-chat-sidebar-toggle="#chat-2-info" title="Details">
-                                                    <i class="icon-md fe-more-vertical"></i>
-                                                </a>
-                                            </li>
-
-                                            <!-- Mobile nav -->
-                                            <li class="nav-item list-inline-item d-block d-xl-none">
-                                                <div class="dropdown">
-                                                    <a class="nav-link text-muted px-0" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                        <i class="icon-md fe-more-vertical"></i>
+        
+                        <!-- Chat -->
+                    <div class="chat">
+            
+                        <!-- Chat: body -->
+                        <div class="chat-body">
+                            
+                            <!-- Chat: Header -->
+                            <div class="chat-header border-bottom py-4 py-lg-6 px-lg-8">
+                                <div class="container-xxl">
+            
+                                    <div class="row align-items-center">
+            
+                                        <!-- Close chat(mobile) -->
+                                        <div class="col-3 d-xl-none">
+                                            <ul class="list-inline mb-0">
+                                                <li class="list-inline-item">
+                                                    <a class="text-muted px-0"  data-chat="open">
+                                                        <i class="icon-md fe-chevron-left"></i>
                                                     </a>
-                                                    <div class="dropdown-menu">
-                                                        <a class="dropdown-item d-flex align-items-center" data-toggle="collapse" data-target="#chat-2-search" href="#">
-                                                            Search <span class="ml-auto pl-5 fe-search"></span>
-                                                        </a>
-
-                                                        <a class="dropdown-item d-flex align-items-center" href="#" data-chat-sidebar-toggle="#chat-2-info">
-                                                            Chat Info <span class="ml-auto pl-5 fe-more-horizontal"></span>
-                                                        </a>
-                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+            
+                                        <!-- Chat photo -->
+                                        <div class="col-6 col-xl-6">
+                                            <div class="media text-center text-xl-left">
+                                                <div class="media-body align-self-center text-truncate">
+                                                    <h6 class="text-truncate mb-n1">PERFIL</h6>
+                                                    <small class="text-muted">Información</small>
                                                 </div>
-                                            </li>
-                                            <!-- Mobile nav -->
-                                        </ul>
-                                    </div>
-
-                                </div><!-- .row -->
-
-                            </div>
-                        </div>
-                        <!-- Chat: Header -->
-
-                        <!-- Chat: Search -->
-                        <div class="collapse border-bottom px-lg-8" id="chat-2-search">
-                            <div class="container-xxl py-4 py-lg-6">
-
-                                <div class="input-group">
-                                    <input type="text" class="form-control form-control-lg" placeholder="Search this chat" aria-label="Search this chat">
-
-                                    <div class="input-group-append">
-                                        <button class="btn btn-lg btn-ico btn-secondary btn-minimal" type="submit">
-                                            <i class="fe-search"></i>
-                                        </button>
-                                    </div>
+                                            </div>
+                                        </div>
+            
+                                    </div><!-- .row -->
+            
                                 </div>
-
                             </div>
-                        </div>
-                        <!-- Chat: Search -->
-
-                        <!-- Chat: Content-->
-                        <div class="chat-content px-lg-8">
-                            <div class="container-xxl py-6 py-lg-10">
-                                <ng-container *ngFor="let item of mensajes">
-                                    <!-- Message -->
-                                    <div class="message" *ngIf ="user_select._id == item.de">
-                                        <!-- Avatar -->
-                                        <a class="avatar avatar-sm mr-4 mr-lg-5" href="#" data-chat-sidebar-toggle="#chat-2-info">
-                                            <img class="avatar-img" [src]="url + 'usuario/img/'+ user_select.imagen" alt="">
-                                        </a>
-
-                                        <!-- Message: body -->
-                                        <div class="message-body">
-
-                                            <!-- Message: row -->
-                                            <div class="message-row">
-                                                <div class="d-flex align-items-center">
-
-                                                    <!-- Message: content -->
-                                                    <div class="message-content bg-light">
-                                                        <h6 class="mb-2">{{user_select.nombre}}</h6>
-                                                        <div>{{item.msm}}</div>
-                                                    </div>
-                                                    <!-- Message: content -->
-
-
-                                                </div>
-                                            </div>
-                                            <!-- Message: row -->
-
-                                        </div>
-                                        <!-- Message: body -->
-                                    </div>
-
-                                    <div class="message message-right" *ngIf ="de == item.de">
-                                        <!-- Avatar -->
-                                        <div class="avatar avatar-sm ml-4 ml-lg-5 d-none d-lg-block">
-                                            <img class="avatar-img" [src]="url + 'usuario/img/'+ identity.imagen" alt="">
-                                        </div>
-
-                                        <!-- Message: body -->
-                                        <div class="message-body">
-
-                                            <!-- Message: row -->
-                                            <div class="message-row">
-                                                <div class="d-flex align-items-center justify-content-end">
-
-
-                                                    <!-- Message: content -->
-                                                    <div class="message-content bg-primary text-white">
-                                                        <div>{{item.msm}}</div>
-                                                    </div>
-                                                    <!-- Message: content -->
-
-                                                </div>
-                                            </div>
-                                            <!-- Message: row -->
-
-                                        </div>
-                                        <!-- Message: body -->
-                                    </div>
-                                    <!-- Message -->
-                                </ng-container>
-                            </div>
-
-                            <!-- Scroll to end -->
-                            <div class="end-of-chat"></div>
-                        </div>
-                        <!-- Chat: Content -->
-
-                        <!-- Chat: DropzoneJS container -->
-                        <div class="chat-files hide-scrollbar px-lg-8">
-                            <div class="container-xxl">
-                                <div class="dropzone-previews-js form-row py-4"></div>
-                            </div>
-                        </div>
-                        <!-- Chat: DropzoneJS container -->
-
-                        <!-- Chat: Footer -->
-                        <div class="chat-footer border-top py-4 py-lg-6 px-lg-8">
-                            <div class="container-xxl">
-
-                                <form id="chat-id-2-form" #msmForm="ngForm" (ngSubmit)="onSubmit(msmForm)">
-                                    <div class="form-row align-items-center">
-                                        <div class="col">
-                                            <div class="input-group">
-
-                                                <!-- Textarea -->
-                                                <textarea id="chat-id-2-input" class="form-control bg-transparent border-0" placeholder="Escribe tu mensaje" rows="1" data-emoji-input="" data-autosize="true" #msm="ngModel" name="msm" [(ngModel)]="data_msm.msm"></textarea>
-
-                                                <!-- Emoji button 
-                                                <div class="input-group-append">
-                                                    <button class="btn btn-ico btn-secondary btn-minimal bg-transparent border-0" type="button" data-emoji-btn="">
-                                                        <img src="assets/images/smile.svg" data-inject-svg="" alt="">
-                                                    </button>
-                                                </div>
-                                                        --> 
-                                                <!-- Upload button 
-                                                <div class="input-group-append">
-                                                    <button id="chat-upload-btn-2" class="btn btn-ico btn-secondary btn-minimal bg-transparent border-0 dropzone-button-js" type="button">
-                                                        <img src="assets/images/paperclip.svg" data-inject-svg="" alt="">
-                                                    </button>
-                                                </div>-->
-
-                                            </div>
-
-                                        </div>
-
-                                        <!-- Submit button -->
-                                        <div class="col-auto">
-                                            <button class="btn btn-ico btn-primary rounded-circle" type="submit">
-                                                <span class="fe-send"></span>
+                            <!-- Chat: Header -->
+                            
+                            <!-- Chat: Content-->
+                            <div class="chat-content px-lg-8" style="background: #ebebeb !important;">
+                                <form #configForm="ngForm" (ngSubmit)="onSubmit(configForm)" >
+                                    <div class="container-xxl py-6 py-lg-10">
+                                        <div *ngIf="msm_success" class="alert alert-success alert-dismissible fade show" role="alert"  >
+                                            {{msm_success}}
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                              <span aria-hidden="true">&times;</span>
                                             </button>
                                         </div>
-
-                                    </div>
-
-                                </form>
-
-                            </div>
-                        </div>
-                        <!-- Chat: Footer -->
-                    </div>
-                    <!-- Chat: body -->
-
-                    <!-- Chat Details -->
-                    <div id="chat-2-info" class="chat-sidebar">
-                        <div class="d-flex h-100 flex-column">
-
-                            <!-- Header -->
-                            <div class="border-bottom py-4 py-lg-6">
-                                <div class="container-fluid">
-
-                                    <ul class="nav justify-content-between align-items-center">
-                                        <!-- Close sidebar -->
-                                        <li class="nav-item list-inline-item">
-                                            <a class="nav-link text-muted px-0" href="#" data-chat-sidebar-close="">
-                                                <i class="icon-md fe-chevron-left"></i>
-                                            </a>
-                                        </li>
-
-                                        <!-- Title(mobile) -->
-                                        <li class="text-center d-block d-lg-none">
-                                            <h6 class="mb-n2">Anna Bridges</h6>
-                                            <small class="text-muted">Chat Details</small>
-                                        </li>
-
-                                        <!-- Dropdown -->
-                                        <li class="nav-item list-inline-item">
-                                            <div class="dropdown">
-                                                <a class="nav-link text-muted px-0" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                    <i class="icon-md fe-sliders"></i>
-                                                </a>
-                                                <div class="dropdown-menu">
-                                                    <a class="dropdown-item d-flex align-items-center" href="#">
-                                                        Mute
-                                                        <span class="ml-auto fe-bell"></span>
-                                                    </a>
-                                                    <a class="dropdown-item d-flex align-items-center" href="#">
-                                                        Delete
-                                                        <span class="ml-auto fe-trash-2"></span>
+                                    <button class="btn btn-lg btn-primary mb-4" type="submit">SEGUIR</button>
+                                    <!-- Accordion -->
+                                    <div class="accordion modified-accordion mb-n6 mb-lg-8" id="profile-settings">
+                                        <div class="card-columns">
+            
+                                            
+            
+                                            <!-- Card -->
+                                            <div class="card mb-6 mb-lg-8">
+                                                <div class="card-header position-relative">
+                                                    <a  class="text-reset d-block stretched-link collapsed"  data-target="#profile-settings-account" aria-controls="profile-settings-account" aria-expanded="true">
+                                                        <div class="row no-gutters align-items-center">
+                                                            <!-- Title -->
+                                                            <div class="col">
+                                                                <h5>Cuenta</h5>
+                                                                <p>Datos del usuario.</p>
+                                                            </div>
+            
+                                                            <!-- Icon -->
+                                                            <div class="col-auto">
+                                                                <i class="text-muted icon-md fe-user"></i>
+                                                            </div>
+                                                        </div>
                                                     </a>
                                                 </div>
+            
+                                                <div id="profile-settings-account" class="collapse show" data-parent="#profile-settings">
+                                                    <div class="card-body">
+                                                        <!--imagen de perfil -->
+                                                        <ng-container *ngIf="user_select">
+                                                            <div class="form-group">
+                                                              
+                                                                <img  class="rounded" style="width: 150px;display:block;
+                                                                margin:auto;margin-bottom: 30px" [src]="url + 'usuario/img/'+ user_select.imagen">
+                                                            </div>
+                                                        
+                                                            <div class="form-group">
+                                                                <label class="small" for="profile-name">Nombres</label>
+                                                                <input class="form-control form-control-lg" id="profile-name" type="text" #nombre="ngModel" name="nombre" [(ngModel)]="user_select.nombre"  >
+                                                                
+                                                            </div>
+            
+                                                            <div class="form-group">
+                                                                <label class="small" for="profile-phone">Telefono</label>
+                                                                <input class="form-control form-control-lg" id="profile-phone" type="text" #telefono="ngModel" name="telefono" [(ngModel)]="user_select.telefono"  >
+                                                            </div>
+            
+                                                            <div class="form-group">
+                                                                <label class="small" for="profile-email">Correo Electrónico</label>
+                                                                <input class="form-control form-control-lg" readonly id="profile-email" type="email" #email="ngModel" name="email" [(ngModel)]="user_select.email"  >
+                                                            </div>
+            
+                                                            <div class="form-group">
+                                                                <label class="small" for="profile-about">Biografía</label>
+                                                                <textarea class="form-control form-control-lg" id="profile-about" rows="3" placeholder="Escribe sobre ti" data-autosize="true" #bio="ngModel" name="bio" [(ngModel)]="user_select.bio" ></textarea>
+                                                            </div>
+                                                        </ng-container>
+                                                            
+                                                        
+                                                    </div>
+                                                </div><!-- .collapse -->
+            
                                             </div>
-                                        </li>
-                                    </ul>
-
-                                </div>
+                                            <!-- Card -->
+            
+            
+                                            
+            
+                                            <!-- Card -->
+                                            <div class="card mb-6 mb-lg-8">
+                                                <div class="card-header position-relative">
+                                                    <a  class="text-reset d-block stretched-link collapsed"  data-target="#profile-settings-social" aria-controls="profile-settings-social" aria-expanded="true">
+                                                        <div class="row no-gutters align-items-center">
+                                                            <!-- Title -->
+                                                            <div class="col">
+                                                                <h5>Redes Sociales</h5>
+                                                                <p>Vincula tus redes sociales.</p>
+                                                            </div>
+            
+                                                            <!-- Icon -->
+                                                            <div class="col-auto">
+                                                                <i class="text-muted icon-md fe-share-2"></i>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </div>
+            
+                                                <div id="profile-settings-social" class="collapse show" data-parent="#profile-settings">
+                                                    <div class="card-body">
+            
+                                                     
+                                                            <!-- Twitter -->
+                                                            <div class="form-group">
+                                                                <label class="small" for="profile-twitter">Twitter</label>
+                                                                <div class="input-group">
+                                                                    <div class="input-group-prepend">
+                                                                        <div class="btn btn-ico btn-secondary btn-minimal">
+                                                                            <i class="fe-twitter"></i>
+                                                                        </div>
+                                                                    </div>
+                                                                    <input id="profile-twitter" type="text" class="form-control form-control-lg" placeholder="Enlace de cuenta" aria-label="Username" #twitter="ngModel" name="twitter" [(ngModel)]="user_select.twitter" >
+                                                                </div>
+                                                            </div>
+            
+                                                            <!-- Facebook -->
+                                                            <div class="form-group">
+                                                                <label class="small" for="profile-facebook">Facebook</label>
+                                                                <div class="input-group">
+                                                                    <div class="input-group-prepend">
+                                                                        <div class="btn btn-ico btn-secondary btn-minimal">
+                                                                            <i class="fe-facebook"></i>
+                                                                        </div>
+                                                                    </div>
+                                                                    <input id="profile-facebook" type="text" class="form-control form-control-lg" placeholder="Username" placeholder="Enlace de cuenta" aria-label="Username" #facebook="ngModel" name="facebook" [(ngModel)]="user_select.facebook" >
+                                                                </div>
+                                                            </div>
+                                          
+                                                    </div>
+                                                </div><!-- .collapse -->
+            
+                                            </div>
+                                            <!-- Card -->
+            
+                                        </div>
+                                    </div>
+                                    <!-- Accordion -->
+            
+                                    </div>
+                                </form>
                             </div>
-                            <!-- Header -->
-
-                            <!-- Body -->
-                            <div class="hide-scrollbar flex-fill">
-
-                                <div class="border-bottom text-center py-9 px-10">
-                                    <!-- Photo -->
-                                    <div class="avatar avatar-xl mx-5 mb-5">
-                                        <img class="avatar-img" src="assets/images/avatars/10.jpg" alt="">
-                                    </div>
-                                    <h5>Anna Bridges</h5>
-                                    <p class="text-muted">Bootstrap is an open source toolkit for developing web with HTML, CSS, and JS.</p>
-                                </div>
-
-                                <!-- Navs -->
-                                <div class="nav nav-tabs nav-justified bg-light rounded-0" role="tablist">
-                                    <a class="nav-item nav-link active" href="#chat-2-user-details" data-toggle="tab" aria-selected="true" role="tab">Details</a>
-                                    <a class="nav-item nav-link" href="#chat-2-user-files" data-toggle="tab"  role="tab">Files</a>
-                                </div>
-                                <!-- Navs -->
-
-                                <div class="tab-content" role="tablist">
-                                    <!-- Details -->
-                                    <div id="chat-2-user-details" class="tab-pane fade show active" role="tabpanel">
-                                        <ul class="list-group list-group-flush mb-8">
-                                            <li class="list-group-item py-6">
-                                                <div class="media align-items-center">
-                                                    <div class="media-body">
-                                                        <p class="small text-muted mb-0">Country</p>
-                                                        <p>Warsaw, Poland</p>
-                                                    </div>
-                                                    <i class="text-muted icon-sm fe-globe"></i>
-                                                </div>
-                                            </li>
-
-                                            <li class="list-group-item py-6">
-                                                <div class="media align-items-center">
-                                                    <div class="media-body">
-                                                        <p class="small text-muted mb-0">Phone</p>
-                                                        <p>+39 02 87 21 43 19</p>
-                                                    </div>
-                                                    <i class="text-muted icon-sm fe-mic"></i>
-                                                </div>
-                                            </li>
-
-                                            <li class="list-group-item py-6">
-                                                <div class="media align-items-center">
-                                                    <div class="media-body">
-                                                        <p class="small text-muted mb-0">Email</p>
-                                                        <p>anna@gmail.com</p>
-                                                    </div>
-                                                    <i class="text-muted icon-sm fe-mail"></i>
-                                                </div>
-                                            </li>
-
-                                            <li class="list-group-item py-6">
-                                                <div class="media align-items-center">
-                                                    <div class="media-body">
-                                                        <p class="small text-muted mb-0">Time</p>
-                                                        <p>10:03 am</p>
-                                                    </div>
-                                                    <i class="text-muted icon-sm fe-clock"></i>
-                                                </div>
-                                            </li>
-                                        </ul>
-
-                                        <ul class="list-group list-group-flush">
-                                            <li class="list-group-item py-6">
-                                                <a href="#" class="media text-muted">
-                                                    <div class="media-body align-self-center">
-                                                        Twitter
-                                                    </div>
-                                                    <i class="icon-sm fe-twitter"></i>
-                                                </a>
-                                            </li>
-
-                                            <li class="list-group-item py-6">
-                                                <a href="#" class="media text-muted">
-                                                    <div class="media-body align-self-center">
-                                                    Facebook
-                                                    </div>
-                                                    <i class="icon-sm fe-facebook"></i>
-                                                </a>
-                                            </li>
-
-                                            <li class="list-group-item py-6">
-                                                <a href="#" class="media text-muted">
-                                                    <div class="media-body align-self-center">
-                                                        Github
-                                                    </div>
-                                                    <i class="icon-sm fe-github"></i>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <!-- Details -->
-
-                                    <!-- Files -->
-                                    <div id="chat-2-user-files" class="tab-pane fade" role="tabpanel">
-                                        <ul class="list-group list-group-flush list-group-no-border-first">
-                                            <!-- File -->
-                                            <li class="list-group-item py-6">
-                                                <div class="media">
-
-                                                    <div class="icon-shape bg-primary text-white mr-5">
-                                                        <i class="fe-paperclip"></i>
-                                                    </div>
-
-                                                    <div class="media-body align-self-center overflow-hidden">
-                                                        <h6 class="text-truncate mb-0">
-                                                            <a href="#" class="text-reset" title="E5419783-047D-4B4C-B30E-F24DD8247731.JPG">E5419783-047D-4B4C-B30E-F24DD8247731.JPG</a>
-                                                        </h6>
-
-                                                        <ul class="list-inline small mb-0">
-                                                            <li class="list-inline-item">
-                                                                <span class="text-muted">79.2 KB</span>
-                                                            </li>
-                                                            <li class="list-inline-item">
-                                                                <span class="text-muted text-uppercase">txt</span>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-
-                                                    <div class="align-self-center ml-5">
-                                                        <div class="dropdown">
-                                                            <a href="#" class="btn btn-sm btn-ico btn-link text-muted w-auto" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                                <i class="fe-more-vertical"></i>
-                                                            </a>
-                                                            <div class="dropdown-menu">
-                                                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                                                    Download <span class="ml-auto fe-download"></span>
-                                                                </a>
-                                                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                                                    Share <span class="ml-auto fe-share-2"></span>
-                                                                </a>
-                                                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                                                    Delete <span class="ml-auto fe-trash-2"></span>
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-                                            </li>
-                                            <!-- File -->
-
-<!-- File -->
-                                            <li class="list-group-item py-6">
-                                                <div class="media">
-
-                                                    <div class="icon-shape bg-primary text-white mr-5">
-                                                        <i class="fe-paperclip"></i>
-                                                    </div>
-
-                                                    <div class="media-body align-self-center overflow-hidden">
-                                                        <h6 class="text-truncate mb-0">
-                                                            <a href="#" class="text-reset" title="E5419783-047D-4B4C-B30E-F24DD8247731.JPG">E5419783-047D-4B4C-B30E-F24DD8247731.JPG</a>
-                                                        </h6>
-
-                                                        <ul class="list-inline small mb-0">
-                                                            <li class="list-inline-item">
-                                                                <span class="text-muted">79.2 KB</span>
-                                                            </li>
-                                                            <li class="list-inline-item">
-                                                                <span class="text-muted text-uppercase">psd</span>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-
-                                                    <div class="align-self-center ml-5">
-                                                        <div class="dropdown">
-                                                            <a href="#" class="btn btn-sm btn-ico btn-link text-muted w-auto" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                                <i class="fe-more-vertical"></i>
-                                                            </a>
-                                                            <div class="dropdown-menu">
-                                                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                                                    Download <span class="ml-auto fe-download"></span>
-                                                                </a>
-                                                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                                                    Share <span class="ml-auto fe-share-2"></span>
-                                                                </a>
-                                                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                                                    Delete <span class="ml-auto fe-trash-2"></span>
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-                                            </li>
-                                            <!-- File -->
-
-<!-- File -->
-                                            <li class="list-group-item py-6">
-                                                <div class="media">
-
-                                                    <div class="icon-shape bg-primary text-white mr-5">
-                                                        <i class="fe-paperclip"></i>
-                                                    </div>
-
-                                                    <div class="media-body align-self-center overflow-hidden">
-                                                        <h6 class="text-truncate mb-0">
-                                                            <a href="#" class="text-reset" title="E5419783-047D-4B4C-B30E-F24DD8247731.JPG">E5419783-047D-4B4C-B30E-F24DD8247731.JPG</a>
-                                                        </h6>
-
-                                                        <ul class="list-inline small mb-0">
-                                                            <li class="list-inline-item">
-                                                                <span class="text-muted">79.2 KB</span>
-                                                            </li>
-                                                            <li class="list-inline-item">
-                                                                <span class="text-muted text-uppercase">pdf</span>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-
-                                                    <div class="align-self-center ml-5">
-                                                        <div class="dropdown">
-                                                            <a href="#" class="btn btn-sm btn-ico btn-link text-muted w-auto" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                                <i class="fe-more-vertical"></i>
-                                                            </a>
-                                                            <div class="dropdown-menu">
-                                                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                                                    Download <span class="ml-auto fe-download"></span>
-                                                                </a>
-                                                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                                                    Share <span class="ml-auto fe-share-2"></span>
-                                                                </a>
-                                                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                                                    Delete <span class="ml-auto fe-trash-2"></span>
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-                                            </li>
-                                            <!-- File -->
-
-<!-- File -->
-                                            <li class="list-group-item py-6">
-                                                <div class="media">
-
-                                                    <div class="icon-shape bg-primary text-white mr-5">
-                                                        <i class="fe-paperclip"></i>
-                                                    </div>
-
-                                                    <div class="media-body align-self-center overflow-hidden">
-                                                        <h6 class="text-truncate mb-0">
-                                                            <a href="#" class="text-reset" title="E5419783-047D-4B4C-B30E-F24DD8247731.JPG">E5419783-047D-4B4C-B30E-F24DD8247731.JPG</a>
-                                                        </h6>
-
-                                                        <ul class="list-inline small mb-0">
-                                                            <li class="list-inline-item">
-                                                                <span class="text-muted">79.2 KB</span>
-                                                            </li>
-                                                            <li class="list-inline-item">
-                                                                <span class="text-muted text-uppercase">txt</span>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-
-                                                    <div class="align-self-center ml-5">
-                                                        <div class="dropdown">
-                                                            <a href="#" class="btn btn-sm btn-ico btn-link text-muted w-auto" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                                <i class="fe-more-vertical"></i>
-                                                            </a>
-                                                            <div class="dropdown-menu">
-                                                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                                                    Download <span class="ml-auto fe-download"></span>
-                                                                </a>
-                                                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                                                    Share <span class="ml-auto fe-share-2"></span>
-                                                                </a>
-                                                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                                                    Delete <span class="ml-auto fe-trash-2"></span>
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-                                            </li>
-                                            <!-- File -->
-
-<!-- File -->
-                                            <li class="list-group-item py-6">
-                                                <div class="media">
-
-                                                    <div class="icon-shape bg-primary text-white mr-5">
-                                                        <i class="fe-paperclip"></i>
-                                                    </div>
-
-                                                    <div class="media-body align-self-center overflow-hidden">
-                                                        <h6 class="text-truncate mb-0">
-                                                            <a href="#" class="text-reset" title="E5419783-047D-4B4C-B30E-F24DD8247731.JPG">E5419783-047D-4B4C-B30E-F24DD8247731.JPG</a>
-                                                        </h6>
-
-                                                        <ul class="list-inline small mb-0">
-                                                            <li class="list-inline-item">
-                                                                <span class="text-muted">79.2 KB</span>
-                                                            </li>
-                                                            <li class="list-inline-item">
-                                                                <span class="text-muted text-uppercase">pdf</span>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-
-                                                    <div class="align-self-center ml-5">
-                                                        <div class="dropdown">
-                                                            <a href="#" class="btn btn-sm btn-ico btn-link text-muted w-auto" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                                <i class="fe-more-vertical"></i>
-                                                            </a>
-                                                            <div class="dropdown-menu">
-                                                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                                                    Download <span class="ml-auto fe-download"></span>
-                                                                </a>
-                                                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                                                    Share <span class="ml-auto fe-share-2"></span>
-                                                                </a>
-                                                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                                                    Delete <span class="ml-auto fe-trash-2"></span>
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-                                            </li>
-                                            <!-- File -->
-
-
-                                        </ul>
-                                    </div>
-                                    <!-- Files -->
-                                </div>
-
-                            </div>
-                            <!-- Body -->
-
+                            <!-- Chat: Content -->
+                           
                         </div>
+                        <!-- Chat: body -->
+            
                     </div>
-                    <!-- Chat Details -->
+                    <!-- Chat -->
                     
+            
                 </div>
+
                 </ng-container>
                 <!-- Chat -->
             </div>
@@ -1820,4 +1370,5 @@
 
         </div>
         <!-- Layout -->
+
 
