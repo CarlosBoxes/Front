@@ -225,7 +225,7 @@
 
                                                 <div class="form-group">
                                                     <label class="small" for="new-password">Nueva contraseña</label>
-                                                    <input id="new-password" type="password" class="form-control form-control-lg" placeholder="Nueva contraseña" #password="ngModel" name="password" [(ngModel)]="passwordText">
+                                                    <input id="new-password" type="password" class="form-control form-control-lg" placeholder="Nueva contraseña" >
                                                     <div *ngIf="msm_error" style="width: 100%">
                                                         <div class="invalid-feedback" style="display: block;">
                                                            {{msm_error}}
@@ -235,7 +235,7 @@
 
                                                 <div class="form-group">
                                                     <label class="small" for="verify-password">Confirmación</label>
-                                                    <input id="verify-password" type="password" class="form-control form-control-lg" placeholder="Verificación de contraseña" #confirm_password="ngModel" name="confirm_password" [(ngModel)]="confirm_passwordText">
+                                                    <input id="verify-password" type="password" class="form-control form-control-lg" placeholder="Verificación de contraseña" >
                                                 </div>
 
                                             
