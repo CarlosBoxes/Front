@@ -63,6 +63,17 @@ export class UserService {
     return this._http.post(this.url+'mensaje/enviar/',msm,{headers: headers})
    }
 
+   get_follow_user(data):Observable<any>{
+    var obj = {
+      follow : data.follow ,
+      seguidores : data.seguidores
+    }
+    console.log(obj)
+    let headers = new HttpHeaders().set('Content-Type','application/json')
+    let x = this._http.post(this.url+'usuario/seguir/',obj,{headers: headers})
+    return x
+   }
+
    getToken () {
       let token = localStorage.getItem('token')
       if (token){

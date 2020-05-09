@@ -10,6 +10,7 @@ import { RegistroComponent } from './components/registro/registro.component';
 import { MessengerComponent } from './components/messenger/messenger.component';
 import { LoginComponent } from './components/login/login.component';
 import { PerfilComponent } from './components/perfil/perfil.component';
+import { UsuariosComponent } from './components/usuarios/usuarios.component';
 
 
 
@@ -20,6 +21,7 @@ import { PerfilComponent } from './components/perfil/perfil.component';
     LoginComponent,
     MessengerComponent,
     PerfilComponent,
+    UsuariosComponent,
     //LoginsComponent
   ],
   imports: [
